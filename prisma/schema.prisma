@@ -43,3 +43,20 @@ model ProjectTime {
 
   @@map("project_times")
 }
+
+model Stack {
+  id   String        @id @default(uuid())
+  name TypeStack
+
+  @@map("type_stacks")
+}
+
+enum TypeStack {
+  Frontend
+  Backend
+  Mobile
+  DevOps
+  QA
+  PM
+  Design
+}
