@@ -4,12 +4,14 @@ import { ListUsersController } from "./app/controllers/user/ListUsersController"
 import { CreateProjectController } from "./app/controllers/project/CreateProjectController";
 import { CreateProjectTimeController } from "./app/controllers/project-time/CreateProjectTimeController";
 import { CreateStackController } from "./app/controllers/stack/CreateStackController";
+import { ListStackController } from "./app/controllers/stack/ListStackController";
 
 const createUserController = new CreateUserController();
 const listUsersController = new ListUsersController();
 const createProjectController = new CreateProjectController();
 const createProjectTimeController = new CreateProjectTimeController();
 const createStackController = new CreateStackController();
+const listStackController = new ListStackController();
 
 const router = Router();
 
@@ -25,5 +27,6 @@ router.post("/api/v1/project", createProjectController.handle);
 router.post("/api/v1/projectTime", createProjectTimeController.handle);
 
 router.post("/api/v1/stack", createStackController.handle);
+router.get("/api/v1/stack", listStackController.handle);
 
 export { router };
