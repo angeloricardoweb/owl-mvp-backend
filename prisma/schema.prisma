@@ -8,9 +8,38 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id       String  @id @default(uuid())
+  email    String  @unique
+  name     String?
+  role     Role    @default(USER)
+  password String
 
   @@map("users")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Project {
+  id   String @id @default(uuid())
+  name String @unique
+  type Type   @default(COMMON)
+
+  @@map("projects")
+}
+
+enum Type {
+  VIP
+  COMMON
+}
+
+model ProjectTime {
+  id        String @id @default(uuid())
+  projectId String
+  userId    String
+  time      Int
+
+  @@map("project_times")
 }
