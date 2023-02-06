@@ -36,21 +36,19 @@ enum Type {
 }
 
 model ProjectTime {
-  id        String   @id @default(uuid())
-  projectId String
-  userId    String
-  minutes      Int
-  date      DateTime @default(now())
-  stack     Stack    @relation(fields: [stackId], references: [id])
-  stackId   String   @default("1") @map("type_stack_id")
+  id          String   @id @default(uuid())
+  projectName String @default("Não informado") @map("project_name")
+  userName    String @default("Não informado") @map("user_name")
+  minutes     Int
+  date        DateTime @default(now())
+  stackName   String   @default("Não informado") @map("stack_name")
 
   @@map("project_times")
 }
 
 model Stack {
-  id          String        @id @default(uuid())
-  name        String        @unique
-  ProjectTime ProjectTime[]
+  id   String @id @default(uuid())
+  name String @unique
 
   @@map("stacks")
 }

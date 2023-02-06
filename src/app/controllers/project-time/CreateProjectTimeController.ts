@@ -15,37 +15,37 @@ export class CreateProjectTimeController {
       }
     }
 
-    const checkUserId = await prismaClient.user.findFirst({
+    const user = await prismaClient.user.findFirst({
       where: {
         id: userId,
       },
     });
 
-    if (!checkUserId) {
+    if (!user) {
       return response.status(400).json({
         message: "Usuário não encontrado",
       });
     }
 
-    const checkProjectId = await prismaClient.project.findFirst({
+    const project = await prismaClient.project.findFirst({
       where: {
         id: projectId,
       },
     });
 
-    if (!checkProjectId) {
+    if (!project) {
       return response.status(400).json({
         message: "Projeto não encontrado",
       });
     }
 
-    const checkStackId = await prismaClient.stack.findFirst({
+    const stack = await prismaClient.stack.findFirst({
       where: {
         id: stackId,
       },
     });
 
-    if (!checkStackId) {
+    if (!stack) {
       return response.status(400).json({
         message: "Stack não encontrada",
       });
@@ -53,10 +53,10 @@ export class CreateProjectTimeController {
 
     const projectTime = await prismaClient.projectTime.create({
       data: {
-        projectId,
-        userId,
+        projectName: project.name,
+        userName: user.name,
+        stackName: stack.name,
         minutes,
-        stackId,
       },
     });
 
