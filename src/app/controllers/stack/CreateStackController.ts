@@ -33,7 +33,7 @@ export class CreateStackController {
       },
     });
 
-    return response.json({
+    return response.status(201).json({
       message: "Stack criada com sucesso",
       results: stack,
     });

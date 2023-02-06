@@ -37,7 +37,7 @@ export class CreateProjectController {
       },
     });
 
-    return response.json({
+    return response.status(201).json({
       message: "Projeto criado com sucesso",
       results: project,
     });
