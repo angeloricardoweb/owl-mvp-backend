@@ -39,7 +39,7 @@ model ProjectTime {
   id        String   @id @default(uuid())
   projectId String
   userId    String
-  time      Int
+  minutes      Int
   date      DateTime @default(now())
   stack     Stack    @relation(fields: [stackId], references: [id])
   stackId   String   @default("1") @map("type_stack_id")
@@ -52,5 +52,5 @@ model Stack {
   name        String        @unique
   ProjectTime ProjectTime[]
 
-  @@map("type_stacks")
+  @@map("stacks")
 }
